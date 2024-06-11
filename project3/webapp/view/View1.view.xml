@@ -1,0 +1,83 @@
+<mvc:View
+	controllerName="com.demo.project3.controller.View1"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+    displayBlock="false">
+	<Page id="page" title="Orders" showHeader="true" class="sapUiSizeCompact">
+	<content>
+		<Table id="idProductsTable"  
+		 items="{
+					path: '/Orders_Qries'
+				}"
+			selectionChange="navigatetodetailpage2"
+			mode="SingleSelectMaster"
+			>
+		<headerToolbar>
+			<Toolbar> 
+			<content>
+			<ToolbarSpacer 
+			   width="50%"></ToolbarSpacer>
+					<Label text="Search" design="Bold"/>
+					<Input width="40%" placeholder="Type To Search" id="input" liveChange="onLiveEventSearchTable"/>
+					<Button icon="sap-icon://reset" press="readEntries" type="Emphasized"/>
+					</content>
+			</Toolbar>
+			</headerToolbar>
+			<columns>
+			<Column
+				>
+				<header>
+				<Label text="Order ID" />
+				</header>
+				</Column>
+			<Column
+				>
+				<header>
+				<Label text="Product Name" />
+				</header>
+			</Column>
+			<Column
+				>
+				<header>
+				<Label text="Shipping Address" />
+				</header>
+			</Column>
+			<Column
+				>
+				<header>
+				<Label text="Shipping Date" />
+				</header>
+			</Column>
+			<Column
+				>
+				<header>
+				<Label text="Required Date" />
+				</header>
+			</Column>
+			</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<Text text="{OrderID}"/>
+					<Text text="{ShipName}"/>
+					<Text text="{Address}"/>
+					<ObjectStatus inverted="false" text="{ path: 'ShippedDate', formatter: '.formatter.formatDate' }"
+                        />
+					<ObjectStatus inverted="false" text="{ path: 'RequiredDate', formatter: '.formatter.formatDate' }"
+                        />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	</content>
+	  <footer>
+<OverflowToolbar>
+<ToolbarSpacer/>
+<Button  press="onSubmit" />
+<Button icon="sap-icon://navigation-right-arrow" press="onBack" type="Reject"/>
+<!-- </ToolbarSpacer> -->
+</OverflowToolbar>
+</footer>
+	</Page>
+</mvc:View>
