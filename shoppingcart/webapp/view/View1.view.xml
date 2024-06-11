@@ -12,7 +12,7 @@
     <m:customHeader>
 		<m:Bar>
 		<m:contentRight>
-		<m:SearchField  placeholder="search"  id="search" liveChange="onLiveEventSearchTable" width="60%"></m:SearchField>
+		<m:SearchField  placeholder="search any item"  id="search" liveChange="onLiveEventSearchTable" width="60%"></m:SearchField>
          <m:Button icon="sap-icon://add" press="onselectionchange1"/>
 		</m:contentRight>
 		<m:contentRight>
