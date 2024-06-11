@@ -8,7 +8,7 @@
     xmlns:l="sap.ui.layout"
     height="100%"
     xmlns:m="sap.m">  
-    <m:Page    title="Shopping cartInfo"  class="sapUiResponsiveContentPadding">
+    <m:Page    title="ShoppingcartInfo"  class="sapUiResponsiveContentPadding">
     <m:customHeader>
 		<m:Bar>
 		<m:contentRight>
@@ -33,7 +33,7 @@
             items="{products>/ProductCollection}"
 			>
             <f:GridListItem>
-                <VBox class="sapUiSmallMargin">
+                <VBox class=" sapUiSmallMargin">
                     <layoutData>
                         <FlexItemData growFactor="1" shrinkFactor="0"/> 
                     </layoutData>
