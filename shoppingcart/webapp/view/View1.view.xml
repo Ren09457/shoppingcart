@@ -1,0 +1,52 @@
+<mvc:View xmlns:core="sap.ui.core"
+    controllerName="com.demo.shoppingcart.controller.View1"
+    xmlns="sap.m"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
+    xmlns:cards="sap.f.cards"
+    xmlns:l="sap.ui.layout"
+    height="100%"
+    xmlns:m="sap.m">
+    <m:Page    title="Shopping cart Info"  class="sapUiResponsiveContentPadding">
+    <m:customHeader>
+		<m:Bar>
+		<m:contentRight>
+		<m:SearchField  placeholder="search"  id="search" liveChange="onLiveEventSearchTable" width="60%"></m:SearchField>
+         <m:Button icon="sap-icon://add" press="onselectionchange1"/>
+		</m:contentRight>
+		<m:contentRight>
+       <m:Button icon="sap-icon://cart-3" press="onselectionchange">
+       <!-- <m:contentLeft></m:contentLeft> -->
+        <!-- <m:Button icon="sap-icon://add" press="onselectionchange1" > -->
+  <m:customData>
+    <m:BadgeCustomData id="cartBadge" value="{products1>/cartCount}"  />
+  </m:customData>
+</m:Button> 
+        <m:Button icon = "sap-icon://refresh" id="refreshbutton" press="onrefresh"></m:Button>
+		</m:contentRight>	
+		</m:Bar>
+		</m:customHeader>
+            <f:GridList
+            id="gridList"
+            headerText="Product Collection"
+            items="{products>/ProductCollection}"
+			>
+            <f:GridListItem>
+                <VBox class="sapUiSmallMargin">
+                    <layoutData>
+                        <FlexItemData growFactor="1" shrinkFactor="0"/> 
+                    </layoutData>
+                    <Title text="{products>Name}"  wrapping="true" />
+                    <Label text="{subtitle}" wrapping="true" />
+                    <Image src="{products>ProductPicUrl}" height="150px" width="150px" class="sapUiTinyMarginBottom"></Image>
+                    <Text text = "₹ {products>Price} per unit"/>
+                    <HBox>
+                            <StepInput  value= "{products>counts}" id="stepinputvalue1" change="onChange"></StepInput>
+                            <Button  icon ="sap-icon://cart-2"  id = "button" press="onShoppingCartPressed"/>
+                            </HBox>
+                    </VBox>
+            </f:GridListItem>
+        </f:GridList>
+    </m:Page>
+ </mvc:View>

@@ -1,0 +1,74 @@
+<mvc:View controllerName="com.demo.project2.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.ui.table" xmlns:m="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" >
+    <m:Page id="page"  showHeader="false"
+            enableScrolling="true"
+             title="{i18n>title}">
+        <m:content>
+        <TreeTable
+                    id="Basic2"
+                    rows="{path : '/results'}"
+                    >
+                <extension>
+                    <m:OverflowToolbar style="Clear">
+                        <m:Title id="title" text=""/>
+                        <m:ToolbarSpacer/>
+                        <m:Button  text="Collapse all" press="onCollapseAll"/>
+                        <m:Button text="Collapse selection" press="onCollapseSelection"/>
+                        <m:Button text="Expand first level" press="onExpandFirstLevel"/>
+                        <m:Button text="Expand selection" press="onExpandSelection"/>
+                         <m:Button icon="sap-icon://navigation-right-arrow" press="onnavigate"/>
+
+                    </m:OverflowToolbar>
+                </extension>
+                <columns>
+                    <Column width="8rem">
+                        <m:Label  text="Customer Info"/>
+                        <template>
+                            <m:Text text="{CustomerID}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="Company Name"/>
+                        <template>
+                            <m:Text text="{CompanyName}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="Contact Name"/>
+                        <template>
+                            <m:Text text="{ContactName}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="Contact Title"/>
+                        <template>
+                            <m:Text text="{ContactTitle}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="Address"/>
+                        <template>
+                            <m:Text text="{Address}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="City"/>
+                        <template>
+                            <m:Text text="{City}" wrapping="false" />
+                        </template>
+                    </Column>
+                    <Column width="8rem">
+                        <m:Label text="Region"/>
+                        <template>
+                            <m:Text text="{Region}" wrapping="false" />
+                        </template>
+                    </Column>
+                    
+                </columns>
+            </TreeTable>
+        </m:content>
+    </m:Page>
+</mvc:View>
+
+

@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: com.demo.browsingorders
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: A17__
+          url: https://portal.intellectbizware.com:80
+        app:
+          name: Z5036_AK
+          description: orders
+          package: ZFIORI
+          transport: A17K902069
+        exclude:
+          - /test/

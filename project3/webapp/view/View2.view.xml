@@ -1,0 +1,161 @@
+<mvc:View
+	controllerName="com.demo.project3.controller.View2"
+	xmlns="sap.m"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form">
+	<semantic:SemanticPage
+		id="page3"
+		>
+		<semantic:titleHeading>
+            <ObjectStatus  id= "orderinfo" text="Order ID:{PrHeader>/OrderID}" inverted="true"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<l:HorizontalLayout>
+				<l:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectStatus inverted="false" text="Required: {path:'PrHeader>/RequiredDate', formatter: '.formatter.formatDate'}"
+                        />
+						<ObjectStatus inverted="false" text="Shipped: {path:'PrHeader>/ShippedDate', formatter: '.formatter.formatDate'}"
+                        />
+					</l:VerticalLayout>
+					</l:HorizontalLayout>
+		</semantic:headerContent>
+		<semantic:content>
+			<l:VerticalLayout id="vlayout" binding="{PrHeader>/results/0}">
+					<IconTabBar id="IconTabBar" expandable="false" >
+        <items>
+          <IconTabFilter  icon="sap-icon://shipping-status" id="ActiveTab">
+           <VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="SimpleFormDisplay3"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="Shipping Address"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				<Label text="Company Name" />
+				<Text id="nameTex" text="{PrHeader>/CompanyName}" />
+				<Label text="Postal Code" />
+				<Text text="{PrHeader>/ShipPostalCode}" />
+				<Label text="Region"/>
+				<Text text="{PrHeader>/Region}"/>
+				</f:content>
+		</f:SimpleForm>
+	</VBox>
+          </IconTabFilter>
+          <IconTabFilter icon= "sap-icon://employee" id="InactiveTab">
+         <VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="SimpleFormDisplay354"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="Processor Information"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				<Label text="Shipping Country" />
+				<Text id="nameText" text="{PrHeader>/ShipCountry}" />
+				<Label text="Address"/>
+				<Text text="{PrHeader>/Address}" />
+				</f:content>
+		</f:SimpleForm>
+	</VBox>
+          </IconTabFilter>
+        </items>
+      </IconTabBar>
+				<Table
+					id="lineItemsList"
+					class="sapUiSmallMarginTop"
+					width="auto"
+					updateFinished=".onListUpdateFinished"
+					>
+					<headerToolbar>
+						<Toolbar id="lineItemsToolbar">
+							<Title
+								id="lineItemsHeader"
+								text="Line Items"/>
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column>
+							<Label text="Employee ID"/>
+						</Column>
+						<Column
+							minScreenWidth="Tablet"
+							demandPopin="true"
+							hAlign="End">
+							<Label text="Customer ID"/>
+						</Column>
+						<Column
+							minScreenWidth="Tablet"
+							demandPopin="true"
+							hAlign="End">
+							<Label text="Country"/>
+						</Column>
+						<Column
+							minScreenWidth="Tablet"
+							demandPopin="true"
+							hAlign="End">
+							<Label text="Freight"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{PrHeader>/EmployeeID}"/>
+								<Text text="{PrHeader>/CustomerID}"/>
+								<Text text="{PrHeader>/ShipCountry}"/>
+								<Text text="{PrHeader>/Freight}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</l:VerticalLayout>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction
+				id="shareEmail"
+				press=".onSendEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:closeAction>
+			<semantic:CloseAction
+				id="closeColumn"
+				press=".onCloseDetailPress"/>
+		</semantic:closeAction>
+		<semantic:fullScreenAction>
+			<semantic:FullScreenAction
+				id="enterFullScreen"
+				visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+				press="toggleFullScreen"/>
+		</semantic:fullScreenAction>
+		<semantic:exitFullScreenAction>
+			<semantic:ExitFullScreenAction
+				id="exitFullScreen"
+				visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+				press="toggleFullScreen"/>
+		</semantic:exitFullScreenAction>
+	</semantic:SemanticPage>
+</mvc:View>

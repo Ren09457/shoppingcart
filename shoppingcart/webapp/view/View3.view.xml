@@ -1,0 +1,125 @@
+<mvc:View controllerName="com.demo.shoppingcart.controller.View3" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.uxap" xmlns:m="sap.m" xmlns:layout="sap.ui.layout" xmlns:forms="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:f="sap.f" xmlns:l="sap.ui.layout">
+	<m:App id="app">
+		<m:Page id="page" title="Create Purchase Order"  showNavButton="true" navButtonPress="backToCartPage" class="sapUiSizeCompact">
+			<m:content/>
+			<ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" showEditHeaderButton="true"
+				editHeaderButtonPress="handleEditBtnPress" upperCaseAnchorBar="false" showFooter="true">
+				<headerTitle>
+					<ObjectPageDynamicHeaderTitle>
+							<expandedContent>
+							<m:ObjectStatus inverted="true" text="PR : 5042"/>
+						</expandedContent>
+					</ObjectPageDynamicHeaderTitle>
+				</headerTitle>
+				<headerContent>
+					<m:FlexBox wrap="Wrap">
+							<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+							<m:Label text="Status" class="status" design="Bold"/>
+							<m:ObjectStatus inverted="true" class="headerText" text="Initiated" state="Warning"/>
+						</layout:VerticalLayout>
+						<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+							<m:Label text="Submitted" class="submit" design="Bold"/>
+							<m:Text class="headerText" text="{Cartprod>/shippingdate}" id="date"/>
+						</layout:VerticalLayout>
+						<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+						</layout:VerticalLayout>
+						<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+							<m:Label text="Supplier" design="Bold"/>
+							  <m:ComboBox items="{/items}">
+ 							 <core:Item key="{key}" text="{text}" />
+  							</m:ComboBox>
+						</layout:VerticalLayout>
+					</m:FlexBox>
+				</headerContent>
+				<sections>
+					<ObjectPageSection titleUppercase="false" id="personalSection" title="" importance="Medium">
+						<subSections>
+							<ObjectPageSubSection id="personalSectionSS1" title="" titleUppercase="false">
+								<blocks>
+									<forms:SimpleForm layout="ColumnLayout" title="Shipping">
+										<m:Label text="Shipping Address"/>
+										<m:Text text="{products1>/shippingaddress}"/>
+										<m:Label text="Ship To"/>
+										<m:Text text="{products1>/shippingto}"/>
+									</forms:SimpleForm>
+									<forms:SimpleForm layout="ColumnLayout" title="Order Summary">
+										<m:Label text="Subtotal"/>
+										<m:Text text=" ₹ {Cartprod>/totalamount}"/>
+										<m:Label text="Total"  class="ordtot"/>
+										<m:Text text="₹ {Cartprod>/totalamount}"/>
+									</forms:SimpleForm>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					<ObjectPageSection titleUppercase="false" id="itemsID" title="">
+						<subSections>
+							<ObjectPageSubSection id="employmentSectionSS1" titleUppercase="false">
+								<blocks>
+									<m:Table id="poItemsTable" noDataText="No data" items="{Cartprod>/addingproduct}" mode="None" selectionChange="enableCopyButton">
+										<m:headerToolbar>
+											<m:OverflowToolbar >
+												<m:Title id="idTitleCount" text="Items" level="H1"/>
+											</m:OverflowToolbar>
+										</m:headerToolbar>
+										<m:columns>
+											<m:Column  width="20%" vAlign="Top" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline" >
+												<m:header>
+													<m:Label design="Bold" text="Line" textAlign="Begin" textDirection="Inherit" visible="true"/>
+												</m:header>
+												<m:footer/>
+											</m:Column>
+											<m:Column  width="25%" vAlign="Top" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline">
+												<m:header>
+													<m:Label design="Bold" text="Name" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+												</m:header>
+												<m:footer/>
+											</m:Column>
+											<m:Column width="30%" vAlign="Top" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline">
+												<m:header>
+													<m:Label design="Bold" text="Price" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+												</m:header>
+												<m:footer/>
+											</m:Column>
+											<m:Column width="35%"  vAlign="Top" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline">
+												<m:header>
+													<m:Label design="Bold" text="Quantity" textAlign="End" visible="true"/>
+												</m:header>
+												<m:footer/>
+											</m:Column>
+											<m:Column  width="30%" vAlign="Top" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline">
+												<m:header>
+													<m:Label design="Bold" text="Amount" wrapping="false" textAlign="End" visible="true"/>
+												</m:header>
+												<m:footer/>
+											</m:Column>
+											</m:columns>
+										<m:items>
+										<m:ColumnListItem>
+												<m:cells>
+													<m:Text text="#{Cartprod>srno}" width="auto" wrapping="false" />
+													<m:Image src="{Cartprod>productname2}" width="98%" height="100%" />
+													<m:Text text="₹{Cartprod>price}" width="auto" wrapping="false" visible="true"/>
+													<m:Text text="{Cartprod>qnt}" width="auto" wrapping="false"/> 
+													<m:Text text="₹{Cartprod>amount}" width="auto" wrapping="false"/>
+												</m:cells>
+											</m:ColumnListItem>
+											</m:items>
+									</m:Table>
+									</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+				</sections>
+				<footer>
+					<m:OverflowToolbar>
+						<m:ToolbarSpacer/>
+						<m:Button icon="sap-icon://open-command-field" text="Post Order" press="handleSubmit" type="Emphasized"/>
+					</m:OverflowToolbar>
+				</footer>
+			</ObjectPageLayout>
+		</m:Page>
+	</m:App>
+</mvc:View>

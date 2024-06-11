@@ -1,0 +1,132 @@
+<mvc:View controllerName="com.demo.shoppingcart.controller.View2" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:f="sap.f" xmlns:cards="sap.f.cards" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:grid="sap.ui.layout.cssgrid" height="100%">
+	<App id="app">
+		<Page>
+			<customHeader>
+				<Bar>
+					<contentLeft>
+						<Button icon="sap-icon://nav-back" type="Transparent" press="navigateToView1"  ></Button>
+						<Text text="Your Cart"></Text>
+					</contentLeft>
+					<contentRight>
+						<Button icon="sap-icon://cart">
+							<customData>
+								<BadgeCustomData id="cartBadge"  value="{Cartprod>/cartCount}"/>
+							</customData>
+						</Button>
+						</contentRight>
+				</Bar>
+			</customHeader>
+			<VBox class="VboxHeader">
+				<SearchField placeholder="Search..." search=".onSearch"  liveChange="onSearch" width="120%" />
+			</VBox>
+					<OverflowToolbar>
+					<Title text="Items({Cartprod>/itemscount})" level="H2">
+						<layoutData>
+							<FlexItemData growFactor="50" />
+						</layoutData>
+					</Title>
+					<ToolbarSpacer/>
+						<Button text="Save as Draft" type="Transparent"></Button>
+					<Button text="Delete Cart" type="Transparent" press="onDeleteCart">
+						<layoutData>
+							<FlexItemData growFactor="1"/>
+						</layoutData>
+					</Button>
+				</OverflowToolbar>
+						<content>
+				<l:DynamicSideContent id="DynamicSideContent"  
+					 containerQuery="true"  class="sapUiDSCExplored sapUiContentPadding" sideContentFallDown="BelowM"
+					sideContentPosition="End"  breakpointChanged="handleBreakpointChanged"  visible="true">
+					<!-- <f:Card class="itemsHeader">
+						<f:header>
+							<Text text="Items" class="itemText"/>
+						</f:header>
+					</f:Card> -->
+					<List id="list" items="{Cartprod>/addingproduct}">
+						<items>
+							<CustomListItem>
+								<f:Card  class="sapUiResponsiveContentPadding">
+									<f:header>
+							<VBox>
+											<HBox justifyContent="SpaceBetween" alignItems="Start" wrap="Wrap" direction="Row">
+											<HBox>
+												<CheckBox text="#{Cartprod>srno}"/>
+												</HBox>
+												<Label text="" width="100%"/>
+												<HBox>
+													<Button icon="sap-icon://delete" type="Transparent" press="onDelete"/>
+												</HBox>
+											</HBox>
+										</VBox>
+										
+										</f:header>
+									<f:content>
+										<VBox  class="sapUiContentPadding"  width="100%">
+											<HBox  class="sapUiContentPadding">
+												<HBox>
+													<Image src="{Cartprod>productname2}" width="100px" height="100px" id="image1" />
+													<VBox>
+														<Title text="{Cartprod>productname}" width="150%"/>
+														<Label text = "{subtitle}" wrapping="true"/>
+														  <Text text = "₹ {Cartprod>price} per unit"/>
+														<StepInput value="{Cartprod>qnt}"  width="40%" change="onChange" id="step"/>
+													</VBox>
+												</HBox>
+												<HBox>
+													<Text text="{Cartprod>Price}{Cartprod>CurrencyCode}" class="total"/>
+												</HBox>
+												<ToolbarSpacer></ToolbarSpacer>
+												<HBox>
+												<ToolbarSpacer/>
+												<ObjectIdentifier title="₹ "></ObjectIdentifier>
+													<Text text="{Cartprod>amount}"  width ="200%"/>
+												</HBox>
+											</HBox>
+										</VBox>
+									</f:content>
+								</f:Card>
+							</CustomListItem>
+						</items>
+					</List>
+					<l:sideContent>
+						<f:Card class="sapUiResponsiveContentPadding">
+							<f:content>
+								<VBox width="100%">
+									<Title text="Order Summary" wrapping="true"/>
+									<Label text="Ship To"  required="true"></Label>
+									<Select id="shipto" width="100%">
+										<core:Item key="AYUSH" text="AYUSH"/>
+										<core:Item key="Abhimanyu" text="Abhimanyu"/>
+										<core:Item key="Steven" text="Steven"/>
+										<core:Item key="Smith" text="Smith"/>
+									</Select>
+									<Label text="Shipping Address" required="true"></Label>
+									<Select id="shipAddr" width="100%" forceSelection="false">
+										<core:Item key="Sabalpur Rajgir" text="Sabalpur Rajgir"/>
+										<core:Item key="Nalanda Bihar" text="Nalanda Bihar"/>
+										<core:Item key="f15, Malhai Pakri" text="f15, Malhai Pakri"/>
+										<core:Item key="Acharya Institutes,Soldevanhalli,karnataka" text="Acharya Institutes,Soldevanhalli"/>
+									</Select>
+									<Label text="Need by Date" required="true"></Label>
+									<DatePicker id="DP17" calendarWeekNumbering="MiddleEastern"  placeholder="Enter Date"/>
+									<HBox justifyContent="SpaceBetween">
+										<Text text="Total"  id = "total1" class="total"></Text>
+										<Text text="₹ {Cartprod>/totalamount}" class="total"></Text>
+									</HBox>
+									<Button text="Initiate Order" type="Emphasized"  width="100%" press="onSubmit"/>
+								</VBox>
+							</f:content>
+						</f:Card>
+					</l:sideContent>
+				</l:DynamicSideContent>
+			</content>
+				<footer>
+			<Toolbar>
+				<Button text="Expand" type="Accept" press="handleToggleClick" id="equalSplitToggleButton"/>
+			</Toolbar>
+		</footer>
+			</Page>
+		</App>
+</mvc:View>

@@ -1,0 +1,70 @@
+<mvc:View controllerName="com.demo.employeetimesheet.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m">
+
+      <Page id="page" title="{i18n>title}">
+       <Table id="employeetable"  growing="true"  growingThreshold="10" sticky="ColumnHeaders,HeaderToolbar"
+        inset="false"  alternateRowColors="true" class="customTableStyle" 
+        items="{
+            path: 'employeeModel>/results'
+        }">
+      
+    <headerToolbar>
+    <Toolbar class="customHeaderToolbar">
+        <SearchField id="search" liveChange="onSearch" width="25%" placeholder="Project Name/Task Name" class="customSearchField"/>
+        <ToolbarSpacer/>
+        <!-- <Button press="createEntry" class="Create" text="Create" type="Emphasized"/> -->
+        <Button press="createEntry" class="Create" type="Emphasized" icon="sap-icon://add"/>
+        <Button press="onMultipleEntry"  type="Emphasized" icon="sap-icon://add-activity"/>
+
+   
+        <Button icon="sap-icon://sort" press="onSort" type="Emphasized"/>
+        <Button icon="sap-icon://filter" press="onFilter" type="Emphasized"/>
+        <Button icon="sap-icon://reset" press="onReset" type="Emphasized"/>
+    </Toolbar>
+    </headerToolbar>
+
+
+         <columns>
+                <Column minScreenWidth="Small" popinDisplay="Inline" demandPopin="true" hAlign="Begin">
+                    <Text text="Project Name" />
+                </Column>
+                <Column minScreenWidth="Small" popinDisplay="Inline" demandPopin="true" hAlign="Begin">
+                    <Text text="Task Name" />
+                </Column>
+                <Column minScreenWidth="small" popinDisplay="Inline" demandPopin="true" hAlign="Begin">
+                    <Text text="Date" />
+                </Column>
+                <Column minScreenWidth="small" popinDisplay="Inline" demandPopin="true" hAlign="Begin">
+                    <Text text="Employee Remark" />
+                </Column>
+                <Column minScreenWidth="Small" popinDisplay="Inline" demandPopin="true" hAlign="Begin">
+                    <Text text="Status" />
+                </Column>
+         </columns>
+
+
+        <items>
+            <ColumnListItem vAlign="Middle">
+                <cells>
+                       
+                    <Text text="{employeeModel>PROJECT_TASK_MASTER_REF/results/0/PROJECT_NAME}" />
+
+                    <Text text="{employeeModel>PROJECT_TASK_MASTER_REF/results/0/TASK_NAME}" />
+
+                    <Text text="{path: 'employeeModel>DATE',type : 'sap.ui.model.type.Date' ,formatOptions : {pattern : 'dd/MM/yyyy'}}" />
+
+                    <Text text="{employeeModel>EMPLOYEE_REMARK}" />    
+
+                    <!-- <ObjectStatus text="{path: 'employeeModel>STATUS_MASTER_REF/STATUS_DESCRIPTION'}" state="{path: 'employeeModel>STATUS_MASTER_REF/STATUS',formatter: '.formatter.getStatus'}" inverted="true" class ="empid"></ObjectStatus> -->
+                    
+                </cells>
+            </ColumnListItem>
+        </items>
+
+
+    </Table>
+    </Page>
+    
+</mvc:View>
