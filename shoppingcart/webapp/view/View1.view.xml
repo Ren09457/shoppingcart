@@ -7,7 +7,7 @@
     xmlns:cards="sap.f.cards"
     xmlns:l="sap.ui.layout"
     height="100%"
-    xmlns:m="sap.m">
+    xmlns:m="sap.m">  
     <m:Page    title="Shopping cart Info"  class="sapUiResponsiveContentPadding">
     <m:customHeader>
 		<m:Bar>
